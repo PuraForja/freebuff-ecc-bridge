@@ -1,8 +1,10 @@
-# 🤖 Freebuff Agente Smit
+# 🤖 FreeBuff Agent Smith
 
 <div align="center">
 
-**Agente de instalação e gerenciamento de skills do ECC para Freebuff/Codebuff**
+**Build, Adapt and Install AI Agents.**
+
+**The AI Engineer for FreeBuff.**
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/PuraForja/freebuff-agent-smith?branch=master)
 ![GitHub repo size](https://img.shields.io/github/repo-size/PuraForja/freebuff-agent-smith)
@@ -10,7 +12,7 @@
 
 ---
 
-**563 recursos do ECC adaptados → 100% de cobertura**
+**Create. Convert. Install. Evolve.**
 
 </div>
 
@@ -18,12 +20,48 @@
 
 ## 📋 O que é
 
-O **Freebuff Agente Smit** é um agente que instala e gerencia skills, agents e rules do [ECC](https://github.com/affaan-m/ECC) (224k+ ⭐) para o [Freebuff](https://freebuff.com) e [Codebuff](https://codebuff.com).
+**FreeBuff Agent Smith** is an autonomous AI engineering agent that discovers, analyzes, converts, generates and installs AI agents for the [FreeBuff](https://freebuff.com) ecosystem.
 
-**Como funciona:**
-1. Execute o script de instalação (`install.sh` ou `install.ps1`)
-2. O agente `@agent-smith` é instalado automaticamente
-3. Use `@agent-smith` no Freebuff/Codebuff para instalar recursos do ECC
+**Em português:**
+Um engenheiro de agentes para o ecossistema FreeBuff. Analisa agentes já instalados e repositórios do GitHub para criar, converter e instalar novos agentes compatíveis automaticamente.
+
+---
+
+## 🔥 Como Funciona
+
+```
+GitHub Repository
+        │
+        ▼
+Analisa a estrutura
+        │
+        ▼
+Compara com agentes já instalados
+        │
+        ▼
+Aprende os padrões do FreeBuff
+        │
+        ▼
+Converte ou cria um novo agente
+        │
+        ▼
+Instala e registra automaticamente
+```
+
+---
+
+## ⚡ Capacidades
+
+| Capacidade | Descrição |
+|------------|-----------|
+| 🔍 **Descobre** | Encontra agentes em repositórios GitHub |
+| 🧠 **Analisa** | Entende a arquitetura do FreeBuff e agentes existentes |
+| 🔄 **Converte** | Adapta agentes de outros frameworks para o padrão FreeBuff |
+| 🏗️ **Gera** | Cria novos agentes a partir de uma descrição |
+| ♻️ **Reutiliza** | Usa componentes de agentes já instalados |
+| 🌐 **Pesquisa** | Consulta implementações na web para melhorar resultados |
+| 📦 **Instala** | Registra agentes automaticamente no FreeBuff |
+| ✅ **Valida** | Verifica se o agente ficou funcional |
 
 ---
 
@@ -43,26 +81,51 @@ curl -fsSL https://raw.githubusercontent.com/PuraForja/freebuff-agent-smith/mast
 
 ## 🤖 Usando o @agent-smith
 
-Após a instalação, abra o Freebuff/Codebuff no diretório do seu projeto e use:
+Após a instalação, abra o FreeBuff/Codebuff no diretório do seu projeto e use:
 
+### Instalar agentes existentes
 ```
 @agent-smith instale python-patterns
 @agent-smith instale error-handling
 @agent-smith instale api-design
-@agent-smith liste
 ```
 
-### Exemplos de uso
+### Criar um novo agente
+```
+@agent-smith crie um agente para revisão de código Python
+@agent-smith crie um agente para deploy automatizado
+```
 
-| Você pede... | O @agent-smith instala... |
-|--------------|---------------------------|
-| "Revise este código Python" | `python-patterns` + `python-reviewer` |
-| "Crie uma API" | `api-design` + `backend-patterns` |
-| "Teste isso" | `e2e-testing` + `tdd-workflow` |
-| "Investigue um bug" | `error-handling` + `silent-failure-hunter` |
-| "Melhore performance" | `performance-optimizer` |
-| "Pesquise sobre X" | `deep-research` + `research-ops` |
-| "Faça deploy" | `deployment-patterns` + `docker-patterns` |
+### Converter agente de outro framework
+```
+@agent-smith converta este agente do Claude Code para FreeBuff
+@agent-smith adapte este agente para o padrão FreeBuff
+```
+
+### Listar e gerenciar
+```
+@agent-smith liste
+@agent-smith atualize
+@agent-smith remova python-patterns
+```
+
+---
+
+## 🧠 RAG para Engenharia de Agentes
+
+O FreeBuff Agent Smith implementa um sistema de **RAG (Retrieval-Augmented Generation)** para engenharia de agentes. Em vez de apenas responder perguntas, ele:
+
+1. **Recupera conhecimento** de múltiplas fontes:
+   - Agentes já instalados no projeto
+   - Repositórios GitHub públicos
+   - Documentação oficial do FreeBuff
+   - Implementações encontradas na web
+
+2. **Combina e analisa** todas as informações
+
+3. **Gera um agente melhor** usando todo o contexto coletado
+
+Isso significa que cada agente criado beneficia do conhecimento acumulado de diversas fontes.
 
 ---
 
@@ -71,16 +134,16 @@ Após a instalação, abra o Freebuff/Codebuff no diretório do seu projeto e us
 ```
 .seu-projeto/
 ├── .agents/
-│   ├── agent-smith.ts        ← O agente instalador
-│   ├── types/                ← Tipos TypeScript
+│   ├── agent-smith.ts         ← O agente engenheiro
+│   ├── types/                 ← Tipos TypeScript
 │   └── installed/
-│       ├── ecc-skills/       ← Skills do ECC
-│       ├── ecc-agents/       ← Agents do ECC
-│       ├── ecc-rules/        ← Rules do ECC
-│       └── custom/           ← Seus resources personalizados
-├── .ecc-config.json          ← Configuração e registro
-├── knowledge.md              ← Documentação do projeto
-└── .gitignore                ← Ignora .agents/installed/
+│       ├── ecc-skills/        ← Skills do ECC
+│       ├── ecc-agents/        ← Agents do ECC
+│       ├── ecc-rules/         ← Rules do ECC
+│       └── custom/            ← Agents criados por você
+├── .ecc-config.json           ← Configuração e registro
+├── knowledge.md               ← Documentação do projeto
+└── .gitignore                 ← Ignora .agents/installed/
 ```
 
 ---
@@ -96,18 +159,6 @@ Após a instalação, abra o Freebuff/Codebuff no diretório do seu projeto e us
 | 🔌 Hooks | 3 |
 | 📝 Contexts | 3 |
 | **Total** | **563** |
-
-### Principais linguagens cobertas
-
-| Linguagem | Recursos |
-|-----------|:--------:|
-| Python | coding-style, patterns, security, testing |
-| TypeScript | coding-style, patterns, security, testing |
-| Golang | coding-style, patterns, security, testing |
-| React | patterns, performance, testing |
-| Rust | patterns, testing, security |
-| Kotlin | patterns, coroutines, testing |
-| +15 outras | cada uma com 3-4 recursos |
 
 ---
 
@@ -125,7 +176,7 @@ Após a instalação, abra o Freebuff/Codebuff no diretório do seu projeto e us
 
 ## 📚 Documentação
 
-- **[knowledge.md](knowledge.md)** - Instruções para o Freebuff/Codebuff
+- **[knowledge.md](knowledge.md)** - Instruções para o FreeBuff/Codebuff
 - **[CATALOGO.md](CATALOGO.md)** - Lista completa de recursos
 - **[SESSAO.md](SESSAO.md)** - Registro de sessão e continuidade
 
@@ -135,13 +186,15 @@ Após a instalação, abra o Freebuff/Codebuff no diretório do seu projeto e us
 
 - **GitHub:** [github.com/PuraForja/freebuff-agent-smith](https://github.com/PuraForja/freebuff-agent-smith)
 - **ECC Original:** [github.com/affaan-m/ECC](https://github.com/affaan-m/ECC) — 224k⭐
-- **Freebuff:** [freebuff.com](https://freebuff.com)
+- **FreeBuff:** [freebuff.com](https://freebuff.com)
 - **Codebuff:** [codebuff.com](https://codebuff.com)
 
 ---
 
 <div align="center">
 
-**Feito com ☕ e loops de melhoria contínua**
+**Build, Adapt and Install AI Agents.**
+
+*Inspired by Agent Smith from The Matrix — an agent that creates, multiplies and adapts other agents.*
 
 </div>
