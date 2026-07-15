@@ -19,7 +19,7 @@ Este skill documenta o **sistema obrigatório** que Buffy deve seguir para sempr
 - Ao trabalhar com banco de dados
 - Qualquer tarefa que tenha um agent ECC especializado
 
-> **Nota:** Este skill lista os 31 agents mais usados. Para a lista completa, consulte `CATALOGO.md` ou execute `ls -1 .agents/*.ts | grep -v types`.
+> **Nota:** Este skill lista todos os 67 agents ECC disponíveis. Para referência rápida, consulte `CATALOGO.md`.
 
 ---
 
@@ -241,64 +241,130 @@ read_files [".agents/code-reviewer.ts"]
 
 ## 🔄 Quando Usar Cada Agent
 
-### Revisão de Código
-| Linguagem | Agent |
-|-----------|-------|
-| TypeScript/JavaScript | `typescript-reviewer` |
-| Python | `python-reviewer` |
-| React | `react-reviewer` |
-| Vue | `vue-reviewer` |
-| Go | `go-reviewer` |
-| Rust | `rust-reviewer` |
-| Java | `java-reviewer` |
-| C++ | `cpp-reviewer` |
-| C# | `csharp-reviewer` |
-| PHP | `php-reviewer` |
-| Swift | `swift-reviewer` |
-| Kotlin | `kotlin-reviewer` |
-| Flutter | `flutter-reviewer` |
+### 🔍 Revisão de Código (15 agents)
+| Linguagem | Agent | Descrição |
+|-----------|-------|-----------|
+| TypeScript/JS | `typescript-reviewer` | Type safety, async correctness, security |
+| Python | `python-reviewer` | PEP 8, idiomatism, type hints, security |
+| React | `react-reviewer` | Hooks, performance, SSR/CSR, a11y |
+| Vue | `vue-reviewer` | Composition API, reatividade, segurança |
+| Angular | `angular-developer` | Angular patterns e best practices |
+| Go | `go-reviewer` | Idiomatic Go, concorrência, performance |
+| Rust | `rust-reviewer` | Ownership, lifetimes, unsafe, padrões |
+| Java | `java-reviewer` | Spring Boot, Quarkus, padrões Java |
+| C++ | `cpp-reviewer` | Memory safety, modern C++, concorrência |
+| C# | `csharp-reviewer` | .NET, padrões C# |
+| PHP | `php-reviewer` | PSR-12, Eloquent, segurança |
+| Swift | `swift-reviewer` | Protocol-oriented, ARC, concorrência |
+| Kotlin | `kotlin-reviewer` | Android/KMP, coroutines |
+| Flutter/Dart | `flutter-reviewer` | Widgets, state management, performance |
+| F# | `fsharp-reviewer` | Functional idioms, type safety |
 
-### Arquitetura e Design
-| Tarefa | Agent |
-|--------|-------|
-| Arquitetura geral | `architect` |
-| Design de features | `code-architect` |
-| Exploração de código | `code-explorer` |
-| Refatoração | `refactor-cleaner` |
-| Simplificação | `code-simplifier` |
+### 🏗️ Arquitetura e Design (5 agents)
+| Tarefa | Agent | Descrição |
+|--------|-------|-----------|
+| Arquitetura geral | `architect` | System design, escalabilidade |
+| Design de features | `code-architect` | Blueprints, interfaces, data flow |
+| Exploração de código | `code-explorer` | Trace execution paths, mapear arquitetura |
+| Refatoração | `refactor-cleaner` | Dead code cleanup, consolidação |
+| Simplificação | `code-simplifier` | Clareza, consistência, manutenibilidade |
 
-### Qualidade e Segurança
-| Tarefa | Agent |
-|--------|-------|
-| Revisão geral | `code-reviewer` |
-| Segurança | `security-reviewer` |
-| Comments | `comment-analyzer` |
-| Performance | `performance-optimizer` |
-| Database | `database-reviewer` |
+### 🛡️ Qualidade e Segurança (8 agents)
+| Tarefa | Agent | Descrição |
+|--------|-------|-----------|
+| Revisão geral | `code-reviewer` | Quality, security, maintainability |
+| Segurança | `security-reviewer` | OWASP Top 10, vulnerabilidades |
+| Comments | `comment-analyzer` | Accuracy, completeness, comment rot |
+| Performance | `performance-optimizer` | Análise e otimização |
+| Database | `database-reviewer` | PostgreSQL, queries, schema |
+| Silent failures | `silent-failure-hunter` | Erros ignorados, fallbacks |
+| Type design | `type-design-analyzer` | Encapsulamento, invariantes |
+| PR tests | `pr-test-analyzer` | Cobertura de testes em PRs |
 
-### Build e Erros
-| Tarefa | Agent |
-|--------|-------|
-| Erros TypeScript | `build-error-resolver` |
-| Erros Dart | `dart-build-resolver` |
-| Erros Rust | `rust-build-resolver` |
-| Erros Go | `go-build-resolver` |
-| Erros Java | `java-build-resolver` |
-| Erros Python | `django-build-resolver` |
-| Erros Kotlin | `kotlin-build-resolver` |
-| Erros C++ | `cpp-build-resolver` |
-| Erros React | `react-build-resolver` |
+### 🔨 Build e Erros (10 agents)
+| Tarefa | Agent | Descrição |
+|--------|-------|-----------|
+| Erros TypeScript | `build-error-resolver` | Build e TS errors |
+| Erros Dart/Flutter | `dart-build-resolver` | Dart/Flutter build errors |
+| Erros Rust | `rust-build-resolver` | Borrow checker, compilação |
+| Erros Go | `go-build-resolver` | Build, vet, compilação |
+| Erros Java | `java-build-resolver` | Maven/Gradle errors |
+| Erros Python/Django | `django-build-resolver` | Django/Python build errors |
+| Erros Kotlin | `kotlin-build-resolver` | Kotlin/Gradle errors |
+| Erros C++ | `cpp-build-resolver` | CMake, compilação |
+| Erros React | `react-build-resolver` | Vite, webpack, Next.js |
+| Erros Swift | `swift-build-resolver` | Xcode, SPM errors |
 
-### Documentação e Outros
-| Tarefa | Agent |
-|--------|-------|
-| Documentação | `doc-updater` |
-| SEO | `seo-specialist` |
-| Marketing | `marketing-agent` |
-| TDD | `tdd-guide` |
-| Planner | `planner` |
-| E2E testing | `e2e-runner` |
-| Agent management | `agent-smith` |
+### 🌐 Frameworks Específicos (8 agents)
+| Framework | Agent | Descrição |
+|-----------|-------|-----------|
+| Django | `django-reviewer` | ORM, DRF, migrations, segurança |
+| FastAPI | `fastapi-reviewer` | Async, DI, Pydantic, OpenAPI |
+| PyTorch | `pytorch-build-resolver` | Runtime, CUDA, treinamento |
+| F# | `fsharp-reviewer` | Functional idioms, computation expressions |
+| HarmonyOS | `harmonyos-app-resolver` | ArkTS, ArkUI |
+| Healthcare | `healthcare-reviewer` | Clinical safety, CDSS, PHI |
+| MLE | `mle-reviewer` | ML pipelines, model serving |
+| GAN | `gan-evaluator` | GAN Harness evaluator |
+
+### 🔄 GAN Harness (3 agents)
+| Tarefa | Agent | Descrição |
+|--------|-------|-----------|
+| GAN Evaluator | `gan-evaluator` | Testa app via Playwright |
+| GAN Generator | `gan-generator` | Implementa features segundo spec |
+| GAN Planner | `gan-planner` | Expande prompts em specs completas |
+
+### 🌐 Network (3 agents)
+| Tarefa | Agent | Descrição |
+|--------|-------|-----------|
+| Network architect | `network-architect` | Enterprise/multi-site networks |
+| Network config | `network-config-reviewer` | Router/switch config review |
+| Network troubleshoot | `network-troubleshooter` | Diagnóstico OSI-layer |
+
+### 🏠 Homelab (1 agent)
+| Tarefa | Agent | Descrição |
+|--------|-------|-----------|
+| Homelab architect | `homelab-architect` | Home/small-lab network plans |
+
+### 📦 Open Source (3 agents)
+| Tarefa | Agent | Descrição |
+|--------|-------|-----------|
+| Fork | `opensource-forker` | Fork projects para open-sourcing |
+| Package | `opensource-packager` | Gerar packaging completo |
+| Sanitize | `opensource-sanitizer` | Verificar fork sanitizado |
+
+### 🧪 Testes e Qualidade (3 agents)
+| Tarefa | Agent | Descrição |
+|--------|-------|-----------|
+| TDD | `tdd-guide` | Test-Driven Development |
+| E2E testing | `e2e-runner` | End-to-end testing |
+| Agent evaluator | `agent-evaluator` | Avalia output de agents |
+
+### 📋 Gestão e Planejamento (5 agents)
+| Tarefa | Agent | Descrição |
+|--------|-------|-----------|
+| Agent management | `agent-smith` | Import/create/manage agents |
+| Planner | `planner` | Feature planning, refactoring |
+| Chief of staff | `chief-of-staff` | Triage comunicações |
+| Loop operator | `loop-operator` | Autonomous agent loops |
+| Harness optimizer | `harness-optimizer` | Agent harness config |
+
+### 📝 Documentação e Conteúdo (5 agents)
+| Tarefa | Agent | Descrição |
+|--------|-------|-----------|
+| Documentation | `doc-updater` | Documentation specialist |
+| Docs lookup | `docs-lookup` | Fetch docs via Context7 MCP |
+| Spec miner | `spec-miner` | Extract behavioral specs |
+| SEO | `seo-specialist` | SEO técnico, Core Web Vitals |
+| Marketing | `marketing-agent` | Campaign planning, copywriting |
+
+### 🌍 Especializados (4 agents)
+| Tarefa | Agent | Descrição |
+|--------|-------|-----------|
+| A11y | `a11y-architect` | WCAG 2.2 compliance |
+| Gov data | `gov-data-downloader` | Dados governo brasileiro |
+| Conversation | `conversation-analyzer` | Analisa transcripts |
+| Healthcare | `healthcare-reviewer` | Clinical safety, PHI compliance |
 
 ---
 
