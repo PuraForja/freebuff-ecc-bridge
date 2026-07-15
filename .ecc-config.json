@@ -1,25 +1,11 @@
 {
   "ecc_repo": "https://github.com/affaan-m/ECC",
-  "bridge_name": "freebuff-agent-smith",
-  "bridge_version": "1.0.0",
+  "bridge_repo": "https://github.com/PuraForja/freebuff-agent-smith",
   "installed_skills": [],
   "installed_agents": [],
   "installed_rules": [],
   "last_sync": null,
-  "created_at": "2026-07-14",
-  "profiles": {
-    "minimal": {
-      "description": "Apenas skills essenciais",
-      "skills": ["coding-standards", "error-handling", "git-workflow"]
-    },
-    "core": {
-      "description": "Skills principais para desenvolvimento",
-      "skills": ["coding-standards", "error-handling", "git-workflow", "python-patterns", "typescript-patterns", "react-patterns"]
-    },
-    "full": {
-      "description": "Todos os recursos do ECC",
-      "skills": "all"
-    }
-  },
-  "current_profile": null
+  "installed_at": "2026-07-15T17:29:42Z",
+  "version": "1.0.0",
+  "note": "Use @agent-smith no Codebuff/Freebuff para instalar recursos do ECC"
 }

@@ -14,7 +14,7 @@ export default {
   toolNames: [...],            // Tools the agent can use
   spawnerPrompt: '...',        // When this agent should be spawned
   spawnableAgents: [...],      // Other agents this agent can spawn
-  handleSteps: async function*() { ... }  // Programmatic workflow
+  handleSteps: function*() { ... }  // Programmatic workflow (synchronous generator)
 }
 ```
 
@@ -43,6 +43,8 @@ You are an expert code reviewer. When reviewing code:
 
 Best for deterministic workflows requiring guaranteed execution order.
 
+> **Important:** `handleSteps` must be a **synchronous generator** (`function*`), NOT an async generator (`async function*`). The Freebuff framework requires `function* (params) { ... }` syntax.
+
 ```typescript
 export default {
   id: 'test-runner',
@@ -50,7 +52,7 @@ export default {
   model: 'openai/gpt-4o',
   toolNames: ['run_terminal_command', 'read_files'],
   instructionsPrompt: 'Run tests and report results',
-  async *handleSteps() {
+  *handleSteps() {
     // Step 1: Run tests
     yield { tool: 'run_terminal_command', command: 'npm test' }
     
@@ -91,7 +93,7 @@ export default {
 ```typescript
 export default {
   spawnableAgents: ['codebuff/reviewer', 'codebuff/basher'],
-  async *handleSteps() {
+  *handleSteps() {
     // Spawn a code review
     yield { tool: 'spawn_agent', agentId: 'codebuff/reviewer', prompt: 'Review this code' }
   }
