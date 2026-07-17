@@ -1,355 +1,245 @@
-# 📓 Registro de Sessão — Freebuff Agente Smit
+# 📓 Registro de Sessão — Freebuff Agent Smith
 
-> **Última atualização:** 02/07/2026 (tarde)
+> **Última atualização:** 16/07/2026
 > **Propósito:** Preservar contexto, decisões e estado para continuidade entre sessões.
-> **Sempre atualize este arquivo ao fazer mudanças significativas.**
 
 ---
 
 ## 🎯 Missão do Projeto
 
-Criar uma **ponte de adaptação** entre o ecossistema ECC (github.com/affaan-m/ECC — 224k⭐)
-e o **Codebuff**, permitindo usar skills, agentes e conceitos do ECC dentro do Codebuff.
+O nome **"Agent Smith"** vem do Agent Smith do Matrix:
+- Copiava a si mesmo, modificava outros programas e criou uma comunidade
+- O Smith faz o mesmo: descobre, clona, adapta e instala agents
+
+### Duas funções principais
+1. **Destilador de Conhecimento** — Extrai conceitos, padrões e princípios de outros projetos SEM copiar código
+2. **Observador/Evolutivo** — Monitora o ecossistema, encontra padrões, sugere melhorias, gerencia patches
+
+### Frase Definitiva
+> **"O Smith não coleciona código. Ele coleciona conhecimento de engenharia."**
 
 ---
 
-## 📁 Estrutura Completa do Workspace
+## 📊 Sessão 16/07/2026 — Readequação Completa
 
+### O que foi feito (em ordem)
+
+#### 1. 📖 Leitura de Documentação
+- ✅ Lemos toda a doc oficial Freebuff (4 docs: creating-new-agents, creating-first-agent, agents-overview, quick-start)
+- ✅ Lemos a doc ECC (AGENTS.md, README.md, estrutura completa)
+- ✅ Lemos o projeto NovosProjetos (templates PRD→SPEC→PLAN→TASKS→REVIEW)
+- ✅ Lemos o projeto Smith inteiro (68 agents, 278 skills, types, configs)
+
+#### 2. 🔍 Análise Cruzada
+- ✅ Cruzamos dados Freebuff ↔ ECC ↔ Smith
+- ✅ Salvo em: `docs/ANALISE-COMPLETA-2026-07-16.md`
+- ✅ Identificamos GAPs: spawnableAgents não usado, types incompletos, tools extras
+
+#### 3. 🚨 Descoberta Crítica
+- ✅ **99% do conteúdo dos agents ECC NÃO foi transferido para o Smith**
+- ✅ Apenas 1 dos 5 agents analisados (code-reviewer) tinha conteúdo completo
+- ✅ 67 agents tinham APENAS 1 LINHA de descrição — eram inúteis
+- ✅ Salvo em: `docs/ANALISE-GAP-ECC-SMITH-2026-07-16.md`
+
+#### 4. 🧬 Coletânea de Ideias
+- ✅ Salvamos toda a coletânea de conversas sobre a visão do Smith
+- ✅ Salvo em: `docs/COLETANEA-IDÉIAS-SMITH.md`
+- ✅ Conceitos: 4 camadas, artefatos, DNA, linhagem, patches, Smith Update, observador, biblioteca de padrões
+
+#### 5. 📋 Documentos do Workflow
+- ✅ Criamos o PRD v3.0 → `docs/01-PRD.md`
+- ✅ Criamos o SPEC v3.0 → `docs/02-SPEC.md`
+- ✅ Workflow: PRD → SPEC → PLAN (GATE 1) → TASKS → IMPLEMENT → REVIEW (GATE 2)
+
+#### 6. 🔧 Correção dos 5 Agents Principais
+- ✅ planner.ts — reconstruído com conteúdo completo do ECC (~200 linhas)
+- ✅ tdd-guide.ts — reconstruído (~150 linhas)
+- ✅ security-reviewer.ts — reconstruído (~250 linhas)
+- ✅ architect.ts — reconstruído (~200 linhas)
+- ✅ code-reviewer.ts — já estava correto
+
+#### 7. 🔄 Conversão Automática de TODOS os 67 Agents
+- ✅ Criamos script `scripts/convert-ecc-agents.py` (v3)
+- ✅ Script lê .md do ECC, adapta para Freebuff, gera .ts completo
+- ✅ **67 agents convertidos com sucesso, 0 erros**
+- ✅ Adaptações: Claude Code→Freebuff, tools mapeadas, backticks/${} escapados
+
+#### 8. 🔍 Análise Profunda — Filosofia de Tools do ECC
+
+**Pergunta:** As tools dos agents estão sendo subutilizadas? Devemos reduzi-las?
+
+**Resposta após pesquisa profunda:** **NÃO.** O ECC foi projetado INTENCIONALMENTE para ter tools limitadas.
+
+**Fontes do ECC:**
+- `the-shortform-guide.md` (linha 411): **"Scope your subagents - limited tools = focused execution"**
+- `the-shortform-guide.md` (linha 144): **"Your 200k context window before compacting might only be 70k with too many tools enabled. Performance degrades significantly."**
+- `README.md` (linha 1198): **"Too many MCP servers eat your context. Each MCP tool description consumes tokens from your 200k window, potentially reducing it to ~70k."**
+
+**Filosofia do ECC:**
+| Princípio | Implementação |
+|-----------|---------------|
+| **Foco por agente** | Cada agente tem 2-5 tools específicas para seu domínio |
+| **Economia de contexto** | Menos tools = menos tokens gastos em descrições |
+| **Delegação barata** | Usar o modelo mais barato possível para cada tarefa |
+| **Orquestração** | O orchestrator delega para sub-agentes com tools limitadas |
+
+**Conclusão:** As tools NÃO devem ser reduzidas. O autor do ECC (affaan-m) é um dos maiores especialistas em agentes de IA e projetou isso intencionalmente.
+
+#### 9. 🗑️ Remoção de Tool Mapping Tables
+
+**Problema:** O script de conversão adicionou tabelas "Tool Mapping (ECC → Freebuff)" que NÃO existem no ECC original.
+
+**Evidência:**
+- Busca por "Tool Mapping" no ECC retornou **0 resultados**
+- Os agents originais do ECC NÃO contêm tabelas de mapeamento
+- As tabelas foram ruído adicionado pela conversão
+
+**Ação:** Removidas de todos os 67 agents via script atualizado (v4).
+
+**Economia:** ~5,360 tokens (80 tokens × 67 agents)
+
+#### 10. 📁 Separação de Diretórios
+
+**Estrutura atual:**
 ```
-/home/rolim/freebuff-workspace/
-├── ECC/                              ← Repositório oficial clonado (só leitura)
-│   ├── agents/     (67 arquivos .md)  ← Agentes ECC originais
-│   ├── skills/     (277 pastas)       ← Skills ECC originais
-│   ├── rules/      (121 arquivos)     ← Regras de qualidade por linguagem
-│   ├── commands/   (92 arquivos)      ← Comandos customizados
-│   ├── hooks/      (3 arquivos)       ← Hooks Claude Code
-│   ├── contexts/   (3 arquivos)       ← Contextos de trabalho
-│   ├── scripts/    (49 scripts JS/SH) ← Ferramentas de automação
-│   ├── src/        (20 arquivos .py)  ← Código fonte Python
-│   ├── docs/       (1496 arquivos)    ← Documentação massiva
-│   └── CHANGELOG.md                  ← Histórico de versões
-│
-├── freebuff-agent-smith/              ← 🎯 PROJETO ATIVO (bridge adaptada)
-│   ├── .codebuff/
-│   │   └── instructions.md           ← ⚠️ Integração automática bridge (rewrite 02/07)
-│   ├── CATALOGO.md                   ← 📋 Catálogo completo de recursos
-│   ├── skills/                       ← 277 skills (como .md, ler com read_files)
-│   ├── agents/                       ← 67 agentes (docs de referência)
-│   ├── rules/                        ← 121 regras de qualidade por linguagem
-│   ├── commands/                     ← 92 comandos de referência
-│   ├── hooks/                        ← 3 hooks de automação
-│   ├── contexts/                     ← 3 contextos de trabalho (dev, research, review)
-│   ├── scripts/
-│   │   ├── sync-ecc.sh               ← 🎯 9 passos, detecta 6 categorias
-│   │   ├── gerar-catalogo.sh         ← 📊 Gera CATALOGO.md (otimizado 15s)
-│   │   └── auto-sync-check.sh        ← Verificador automático (.bashrc)
-│   ├── logs/                         ← Relatórios de sincronização
-│   ├── SESSAO.md                     ← 📍 VOCÊ ESTÁ AQUI
-│   └── README.md                     ← Documentação
-```
-
----
-
-## 🧠 Decisões de Arquitetura
-
-### 1. Separação ECC clone vs Agente Smit
-
-| Decisão | Justificativa |
-|---------|---------------|
-| ECC clonado separadamente | Mantém o original intacto para atualizações via git pull |
-| Agente Smit adapta para Codebuff | Traduz formato Claude → Codebuff sem poluir o original |
-| Script sync-ecc.sh automatiza | Usuário só roda um comando para sincronizar |
-
-### 2. Sincronização Automática (sync-ecc.sh)
-
-O `sync-ecc.sh` foi modificado para fazer **auto-detecção** de TODAS as skills e agentes
-do ECC, sem depender de mapeamento manual. Antes usava arrays `SKILL_MAP` e `AGENT_MAP`
-com apenas 41 skills e 6 agentes mapeados — agora itera sobre TODOS os diretórios/arquivos
-do ECC automaticamente.
-
-Apenas 5 exceções de rename são mantidas: `delivery-gate → quality-gate`,
-`data-scraper-agent → data-scraper`, `automation-audit-ops → automation-audit`,
-`benchmark-optimization-loop → benchmark-optimization`,
-`continuous-learning-v2 → continuous-learning`.
-
-### 3. Agentes do ECC NÃO são spawnáveis no Codebuff
-
-Os arquivos em `agents/` são **documentos de referência/knowledge**, NÃO agentes
-registrados como tools no sistema Codebuff. Não funcionam com `@NomeDoAgente`.
-Para usá-los, é necessário pedir explicitamente: "Aja como o [agente] descrito em
-agents/[agente].md".
-
-### 4. loop-operator vs infinite-improvement-loop.sh
-
-O `loop-operator` do ECC é um **guia conceitual** (9 linhas) — descreve COMO pensar
-sobre loops. O `continuous-agent-loop` é um **catálogo de padrões** (15 linhas).
-Já o `infinite-improvement-loop.sh` é uma **implementação executável** (250+ linhas)
-com crash recovery, checkpoint, auto-fixes e integração bridge.
-
-Não há substituição direta — o ECC fornece os conceitos, nosso script é a
-implementação concreta.
-
-### 5. Auto-sync via .bashrc
-
-Adicionado ao `.bashrc`:
-- Verificador automático que roda 1x/dia quando abre terminal no workspace
-- Alias `sync-ecc` para sincronização manual
-- Usa `timeout 3 git fetch` para detectar mudanças sem travar
-
-### 6. Agente Smit expandida: 6 categorias detectadas pelo sync-ecc.sh
-
-O `sync-ecc.sh` agora detecta **6 categorias** em 9 passos:
-
-| Passo | Categoria | Qtde ECC | Formato na Agente Smit |
-|:-----:|-----------|:--------:|-------------------|
-| [3/9] | 🧠 Skills | 277 | `skills/*.md` — ler com `read_files` |
-| [4/9] | 🎯 Agentes | 67 | `agents/*.md` — docs de referência |
-| [5/9] | 📏 Regras | 121 | `rules/*.md` — qualidade por linguagem |
-| [6/9] | ⚡ Comandos | 92 | `commands/*.md` — referência de tarefas |
-| [7/9] | 🔌 Hooks | 3 | `hooks/*` — JSON + .md adaptados |
-| [8/9] | 📝 Contextos | 3 | `contexts/*.md` — modos dev/research/review |
-
-**Total: 563 recursos do ECC → 564 na bridge** (1 extra: infinite-improvement-loop.md)
-
-### 7. Skills NÃO são registradas no Codebuff — são arquivos .md
-
-As skills da bridge são arquivos `.md` avulsos, NÃO skills registradas no sistema
-Codebuff. O tool `skill "nome"` NÃO funciona com elas. Para usar:
-
-```
-read_files skills/nome-da-skill.md
+.agents/
+├── types/
+│   ├── agent-definition.ts
+│   ├── tools.ts
+│   └── util-types.ts
+├── ecc/                    ← 67 agents convertidos do ECC
+│   ├── code-reviewer.ts
+│   ├── security-reviewer.ts
+│   └── ...
+├── custom/                 ← 2 agents criados por você
+│   ├── agent-smith.ts
+│   └── gov-data-downloader.ts
+└── index.ts                ← Barrel export que combina ambos
 ```
 
-Isso foi uma descoberta importante — durante a demonstração do novo fluxo,
-`skill "coding-standards"` falhou com "not found".
+**Vantagens:**
+- Separação clara entre ECC (upstream) e custom (seu)
+- Script de conversão só afeta `.agents/ecc/`
+- Fácil de atualizar ECC sem afetar custom
+- Clear ownership
 
-### 8. Integração automática — Buffy passa a usar a bridge sem ser solicitada
-
-O `.codebuff/instructions.md` foi reescrito com um **protocolo de integração automática**:
-
-1. Identificar tipo de tarefa + contexto (dev/research/review)
-2. Consultar CATALOGO.md
-3. Carregar skills relevantes (ler .md)
-4. Ler agentes relevantes (aplicar perspectiva)
-5. Consultar regras de qualidade
-6. Anunciar brevemente o que está usando
-7. Executar a tarefa
-
-**Regra fundamental:** "NÃO pergunte 'quer que eu carregue X?' — Apenas FAÇA.
-MAS SEMPRE anuncie o que está usando."
-
-Quando o usuário mencionar "ECC", entender como "bridge" (freebuff-agent-smith).
-
-### 9. catalog.js do ECC NÃO é equivalente ao gerar-catalogo.sh
-
-| Aspecto | `catalog.js` (ECC) | `gerar-catalogo.sh` (Agente Smit) |
-|---------|:------------------:|:---------------------------:|
-| Propósito | CLI de descoberta de componentes | Gerador de catálogo Markdown |
-| Saída | JSON formatado | CATALOGO.md com tabelas |
-| Runtime | Node.js | Bash + Python3 |
-| Uso | Explorar perfis de instalação ECC | Documentar recursos da bridge |
-
-São ferramentas diferentes que servem a propósitos diferentes.
+**Alterações necessárias:**
+- Imports atualizados de `./types/agent-definition` para `../types/agent-definition`
+- Script de conversão atualizado para escrever em `.agents/ecc/`
 
 ---
 
-## ✅ Estado Atual
+## 📁 Arquivos Criados/Atualizados Nesta Sessão
 
-| Componente | Status | Detalhes |
-|------------|--------|----------|
-| ECC clonado | ✅ | Commit mais recente disponível |
-| sync-ecc.sh | ✅ **9 passos** | Detecção de 6 categorias: skills, agents, rules, commands, hooks, contexts |
-| gerar-catalogo.sh | ✅ **Otimizado** | Lookup O(1): de >60s para 15s |
-| Rules detectadas | ✅ **121** (100%) | Regras de qualidade por linguagem |
-| Commands detectados | ✅ **92** (100%) | Comandos de referência |
-| Hooks detectados | ✅ **3** | hooks.json + README + memory-persistence |
-| Contextos detectados | ✅ **3** | dev.md, research.md, review.md |
-| auto-sync-check.sh | ✅ Testado | 1x/dia, só no workspace, timeout 3s |
-| Skills (arquivos .md) | ✅ **277** (100%) | Ler com `read_files` — NÃO são skills registradas no Codebuff |
-| Agentes adaptados | ✅ **67** (100%) | Docs de referência — NÃO spawnáveis com @ |
-| Integração automática | ✅ **Protocolo 7 passos** | Buffy carrega skills/agentes automaticamente sem solicitação |
-| .codebuff/instructions.md | ✅ **Reescrito** | Protocolo de integração automática + tabela de referência |
-| Skills registradas Codebuff | ❌ Nenhuma | São .md avulsos — `skill "nome"` não funciona |
-| README.md | ✅ | Documentação completa |
-| .bashrc configurado | ✅ | Auto-sync + alias sync-ecc |
-| Testes exaustivos | ✅ **3 ciclos** | 0 erros de sintaxe, idempotente, catálogo 15s |
+| Arquivo | Conteúdo |
+|---------|----------|
+| `docs/ANALISE-COMPLETA-2026-07-16.md` | Análise cruzada Freebuff ↔ ECC ↔ Smith |
+| `docs/ANALISE-GAP-ECC-SMITH-2026-07-16.md` | Descoberta: 99% do conteúdo perdido |
+| `docs/COLETANEA-IDÉIAS-SMITH.md` | Coletânea bruta de ideias (referência) |
+| `docs/01-PRD.md` | Product Requirements Document v3.0 |
+| `docs/02-SPEC.md` | Especificação Técnica v3.0 |
+| `scripts/convert-ecc-agents.py` | Script de conversão automática (v4) |
+| `.agents/ecc/*.ts` (67 arquivos) | Todos os agents ECC reconstruídos |
+| `.agents/custom/*.ts` (2 arquivos) | Agents custom (agent-smith, gov-data-downloader) |
+| `.agents/index.ts` | Barrel export combinando ambos |
+| `.agents/types/` | Tipos TypeScript compartilhados |
+| `skills/security-baseline.md` | Skill de segurança compartilhada |
+| `SESSAO.md` | Este arquivo |
 
 ---
 
-## 🔄 Ciclo de Auto-Melhoria Realizado
+## 📈 Estado Atual
 
-Seguindo o conceito ECC de **verification loop**, usamos nossas próprias
-ferramentas para revisar nosso código:
-
-1. **Criamos** as skills adaptadas do ECC
-2. **Usamos** `code-reviewer-deepseek-flash` (agente) + conceitos de `quality-gate` e `verification-loop`
-3. **Encontramos** 5 problemas nos scripts:
-   - 🔴 **Crítico:** Heredoc com `$(echo "$corpo")` — risco de execução de comando
-   - 🟡 **Médio:** `WORKSPACE_DIR` assumia estrutura fixa
-   - 🟡 **Médio:** `cd` sem fallback podia quebrar com `set -e`
-   - 🔵 **Baixo:** `echo` interpreta `\n` como quebra de linha (trocado por `printf '%s'`)
-   - 🔵 **Baixo:** `<<- FALLBACK` com espaços (só funciona com tabs)
-4. **Corrigimos** todos os problemas
-5. **Testamos** → ✅ Scripts rodando perfeitamente
+| Componente | Antes | Depois |
+|------------|:-----:|:------:|
+| Agents com conteúdo completo | 1/68 | **67/68** |
+| Agents com 1 linha | 67/68 | **0/68** |
+| PRD | Não existia | ✅ v3.0 |
+| SPEC | Não existia | ✅ v3.0 |
+| Script de conversão | Não existia | ✅ v4 funcional |
+| Tool Mapping tables | Presentes em 40+ agents | **Removidas** |
+| Referências Claude/Anthropic | Não adaptadas | **Todas adaptadas** |
+| Diretórios | Misturados | **Separados (ecc/custom)** |
 
 ---
 
-## 🗺️ Próximos Passos Recomendados
+## 🔄 Workflow em Andamento
 
-1. ✅ ~~Adicionar mais skills ao mapeamento~~ — Expandido de 41 para **277** (100% do ECC)
-2. ✅ ~~Adicionar mais agentes ao mapeamento~~ — Expandido de 6 para **67** (100% do ECC)
-3. ✅ ~~Auto-detecção no sync-ecc.sh~~ — SKILL_MAP/AGENT_MAP substituídos por auto-detecção
-4. ✅ ~~Revisão multi-agente do sync-ecc.sh~~ — Aplicadas 4 perspectivas (code-reviewer, security-reviewer, performance-optimizer, silent-failure-hunter)
-5. ✅ ~~Esclarecido: agentes ECC não são spawnáveis~~ — São docs de referência, não tools registradas
-6. ✅ ~~Esclarecido: loop-operator vs script~~ — loop-operator é conceitual, nosso script é implementação
-7. ✅ ~~Corrigir top 3 issues da revisão multi-agente~~ — Python inline fixed (env vars), erro catálogo capturado, performance otimizada (catálogo 15s)
-8. ~~Integrar conceitos do loop-operator no infinite-improvement-loop.sh~~ — Escalation e loop selection flow
-9. ~~Versionar bridge no git~~ — Para tracking de mudanças
-10. ✅ ~~Adicionar rules/ e commands/ ao sync-ecc.sh~~ — 121 rules + 92 commands detectados com stat -c %Y
-11. ✅ ~~Adicionar hooks/ e contexts/ ao sync-ecc.sh~~ — 3 hooks + 3 contextos detectados
-12. ✅ ~~Otimizar gerar-catalogo.sh~~ — Lookup O(1), de >60s para 15s
-13. ✅ ~~Criar protocolo de integração automática~~ — .codebuff/instructions.md reescrito com 7 passos
-14. ✅ ~~Testar novo fluxo com revisão multi-agente~~ — sync-ecc.sh revisado com 4 agentes, 0 críticas
-15. **Expandir CATALOGO.md** — incluir rules, commands, hooks, contexts nas estatísticas
-16. **Adicionar fallback no .codebuff/instructions.md** — se skill/agente não existir, ignorar
+```
+✅ 01-PRD.md    →  Escrito (aguardando aprovação)
+✅ 02-SPEC.md   →  Escrito (aguardando aprovação)
+⬜ 03-PLAN.md   →  Próximo — PLANO DE AÇÃO
+⬜ 04-TASKS.md  →  Após PLAN — LISTA DE TAREFAS
+⬜ 05-REVIEW.md →  Após implementação
+```
+
+### Próximos passos
+1. Aprovar PRD e SPEC (GATE 1)
+2. Escrever 03-PLAN.md com fases de implementação
+3. Escrever 04-TASKS.md com tarefas detalhadas
+4. Implementar mudanças
+5. Revisar (GATE 2)
 
 ---
 
-## ⚙️ Configuração do .bashrc (para recriar se necessário)
+## 🧠 Conceitos-Chave Definidos
 
-Estas linhas foram adicionadas ao final do `~/.bashrc`:
+| Conceito | Definição |
+|----------|-----------|
+| **4 Camadas** | Originais (Read Only) → Biblioteca Smith → Workspace → Resultado |
+| **Artefatos** | Tudo é artefato: agent, skill, prompt, tool, fluxo, memória, config, MCP, template, teste |
+| **DNA** | Conhecimento reutilizável (NÃO código) |
+| **Linhagem** | Origem + Transformação + Destino (obrigatório) |
+| **Patches** | Personalizar sem modificar originais (como apt/npm) |
+| **Smith Update** | Verificação semanal de atualizações |
+| **Observador** | Detecta duplicação, sugere consolidação |
+| **Biblioteca de Padrões** | Design Patterns para agents de IA |
+| **Destilação** | Extrair conceitos de repos → Biblioteca Smith |
+| **Ética** | Smith recomenda, nunca impõe. Usuário decide |
+
+### Filosofia de Tools (ECC)
+
+| Princípio | Fonte | Implicação |
+|-----------|-------|------------|
+| **Limited tools = focused execution** | the-shortform-guide.md:411 | NÃO reduzir tools dos agents |
+| **Context window is precious** | the-shortform-guide.md:144 | Cada tool description consome tokens |
+| **Delegate cheapest model** | the-longform-guide.md:109 | deepseek para tarefas simples, mimo para complexas |
+| **Scope your subagents** | the-shortform-guide.md:411 | Cada agent tem domínio bem definido |
+
+---
+
+## 🛠️ Scripts Disponíveis
 
 ```bash
-# 🔄 Freebuff Agente Smit — Sincronização Automática
-AGENT_SMITH_AUTOSYNC="$HOME/freebuff-workspace/freebuff-agent-smith/scripts/auto-sync-check.sh"
-if [ -f "$AGENT_SMITH_AUTOSYNC" ]; then
-    bash "$AGENT_SMITH_AUTOSYNC"
-fi
+# Conversão de agents ECC → Freebuff (atualizado para v4)
+python3 scripts/convert-ecc-agents.py --force
 
-alias sync-ecc='bash $HOME/freebuff-workspace/freebuff-agent-smith/scripts/sync-ecc.sh'
+# Conversão seletiva
+python3 scripts/convert-ecc-agents.py --agent planner --force
+
+# Dry-run (sem escrever)
+python3 scripts/convert-ecc-agents.py --dry-run
 ```
 
 ---
 
-## 🚀 Para continuar na próxima sessão
+## 🔧 Issues Conhecidos (Não Bloqueantes)
 
-### Passo a passo para você (usuário):
-
-1. **Abra o Codebuff** na pasta da bridge:
-   ```bash
-   cd ~/freebuff-workspace/freebuff-agent-smith
-   ```
-
-2. **Diga para a IA:**
-   > "Continue de onde paramos. Leia o SESSAO.md"
-
-3. **A IA vai:**
-   - Ler este arquivo
-   - Saber todo o contexto da sessão anterior
-   - Saber o que já foi feito e o que falta
-   - Continuar o trabalho
-
-### Comandos úteis:
-
-| O que fazer | Comando |
-|-------------|---------|
-| Sincronizar manualmente | `sync-ecc` (ou `./scripts/sync-ecc.sh`) |
-| Ver relatórios de sync | `ls logs/` |
-| Ver skills disponíveis | `ls skills/` |
-| Auto-sync | Já configurado — abre o terminal no workspace e ele roda |
+| Issue | Severidade | Notas |
+|-------|:----------:|-------|
+| `agent-smith.ts` tem import duplicado | 🟡 Médio | Exemplo no instructionsPrompt não deve ser alterado |
+| `agent-smith.ts` tem `*handleSteps` inválido | 🟡 Médio | Sintaxe de generator não suportada |
+| `index.ts` é manualmente mantido | 🔵 Baixo | Pode ser automatizado no futuro |
+| `SECURITY_BASELINE` duplicado | 🔵 Baixo | Skill file + constante no script |
 
 ---
 
-## 🧠 Aprendizado Contínuo (Continuous Learning)
+## 🔄 Para continuar na próxima sessão
 
-### Lições aprendidas nesta sessão
-
-1. **Auto-validação funciona** — Usamos verification-loop, quality-gate e code-reviewer
-   para revisar nosso PRÓPRIO código. Encontramos e corrigimos 1 problema real
-   (permissão de execução no sync-ecc.sh).
-
-2. **Separação ECC vs Agente Smit é o padrão certo** — Manter o ECC original intacto
-   e adaptar na bridge separa responsabilidades e facilita atualizações.
-
-3. **Python3 > bash para geração de arquivos** — O uso de python3 dentro do
-   sync-ecc.sh resolveu problemas de escaping que o heredoc do bash causava.
-
-4. **Catálogo + Histórico = Memória do projeto** — CATALOGO.md e
-   HISTORICO_ATUALIZACOES.md formam a base de conhecimento que permite
-   consultar recursos disponíveis e mudanças ao longo do tempo.
-
-5. **Infinite Improvement Loop com checkpoint** — Criamos um sistema de loop infinito
-   que persiste estado em LOOP_STATUS.md. Se cair energia, ele lê o checkpoint e
-   continua de onde parou. O revisor encontrou 2 bugs P1 (contadores zerados,
-   --reset sem data) e 2 issues P2 que foram todos corrigidos.
-
-6. **loop-operator + continuous-agent-loop mapeados** — O ECC já tinha agentes de
-   loop (loop-operator, continuous-agent-loop). Agora estão na bridge.
-
-7. **Auto-correção integrada ao loop** — O infinite-improvement-loop.sh agora tem
-   função `corrigir_automaticamente()` que corrige permissões, verifica sintaxe,
-   e garante que diretórios/arquivos existam antes de cada iteração.
-
-8. **Auto-detecção > mapeamento manual** — O sync-ecc.sh foi modificado para
-   detectar AUTOMATICAMENTE todas as 277 skills e 67 agentes do ECC, sem
-   precisar de SKILL_MAP/AGENT_MAP manuais. Isso garante 100% de cobertura.
-
-9. **Bug do glob `*/` no JSON** — O caractere `*` do glob foi perdido no escaping
-   do JSON na primeira tentativa. O loop de skills não iterava. Corrigido via
-   hex dump e `bash -x` debugging.
-
-10. **Agentes ECC NÃO são spawnáveis no Codebuff** — Os 67 agentes convertidos
-    são arquivos `.md` de referência, não tools registradas. `@AgentName` não
-    funciona. É preciso pedir explicitamente: "Aja como o [agente]".
-
-11. **Revisão multi-agente revelou 11 issues** — Aplicamos 4 perspectivas
-    (code-reviewer, security-reviewer, performance-optimizer, silent-failure-hunter)
-    no sync-ecc.sh. Resultado: 0 críticas, 4 médias, 7 baixas. Top 3:
-    - Python inline injection risk (escaping frágil)
-    - Erro do catálogo engolido (>/dev/null descarta diagnóstico)
-    - Performance do Python3 startup (277 processos individuais)
-
-12. **loop-operator ECC é conceitual, não substitui nosso script** — O
-    `loop-operator` tem 9 linhas de instruções conceituais. Nosso
-    `infinite-improvement-loop.sh` tem 250+ linhas de implementação concreta
-    com checkpoint, auto-fixes e integração bridge. Cada um serve a um
-    propósito diferente.
-
-13. **Agente Smit expandida para 6 categorias** — sync-ecc.sh agora detecta skills (277),
-    agents (67), rules (121), commands (92), hooks (3) e contexts (3) — total de
-    563 recursos ECC convertidos para a bridge.
-
-14. **Skills NÃO são registradas no Codebuff** — São arquivos .md avulsos.
-    `skill "nome"` não funciona. Usar `read_files skills/nome.md`.
-    Descoberta ao testar o novo fluxo de integração.
-
-15. **Integração automática é o novo padrão** — Buffy agora:
-    - Carrega skills/agentes automaticamente sem o usuário pedir
-    - Anuncia o que está usando ("📖 Usando bridge: X · Y")
-    - Não pergunta "quer que eu carregue X?" — apenas faz
-    - Consulta CATALOGO.md e agentes antes de executar tarefas
-
-16. **Demonstração do novo fluxo aprovada** — Revisão do sync-ecc.sh usando
-    4 agentes (code-reviewer, security-reviewer, performance-optimizer,
-    silent-failure-hunter) + contexto de revisão + skills de padrões.
-    Resultado: APROVADO (3 issues baixas, nenhuma crítica).
-
-17. **gerar-catalogo.sh otimizado com array associativo** — Loop aninhado
-    277×278 (~77k iterações com grep) substituído por lookup O(1) via
-    `declare -A`. Tempo de geração: de >60s (timeout) para **15s**.
-
-### Instintos a manter
-
-- Sempre rodar verification-loop após criar/modificar scripts
-- Sempre atualizar SESSAO.md ao final de cada sessão
-- Usar @code-reviewer antes de considerar tarefa concluída
-- Quando criar algo novo, rodar infinite-improvement-loop --dry-run primeiro
-- Crash recovery só funciona se o checkpoint for salvo a cada iteração
-- Preferir auto-detecção sobre mapeamento manual
-- Agentes ECC são referência — usar como "aja como..." não como @
-- loop-operator é conceito, infinite-improvement-loop.sh é implementação
+1. Abra o Freebuff na pasta do Smith
+2. Diga: "Continue de onde paramos. Leia o SESSAO.md"
+3. A IA vai ler este arquivo e saber todo o contexto
 
 ---
 
-*Documento gerado em 02/07/2026 — mantido para continuidade entre sessões.*
-*📌 Sempre atualize este arquivo quando fizer mudanças significativas!*
+*Documento atualizado em 16/07/2026 — sessão de readequação completa do Smith v4.0*

@@ -1,84 +1,124 @@
-# 🧠 Freebuff Agente Smit — Knowledge File
+# 🧠 Freebuff Agent Smith — Knowledge File v2.0
 
 ## ⚠️ INSTRUÇÕES AUTOMÁTICAS (Obrigatório ler)
 
 **Quando este projeto for aberto no Freebuff/Codebuff:**
 
 1. **Detecte automaticamente** que o `@agent-smith` está disponível em `.agents/agent-smith.ts`
-2. **Ofereça ao usuário** instalar recursos do ECC usando o `@agent-smith`
+2. **Ofereça ao usuário** as capacidades completas do Agent Smith:
+   - Reavaliar agentes (multi-agente)
+   - Descobrir repositórios no GitHub
+   - Clonar/criar agentes novos
+   - Instalar ECC e outros recursos
 3. **Leia o arquivo** `.ecc-config.json` para saber o que já está instalado
+4. **Sempre use os PRÓPRIOS AGENTES** para reavaliar e melhorar a solução
 
-### Comandos Disponíveis
+---
 
-O usuário pode usar os seguintes comandos:
+## 🚀 O que é o Freebuff Agent Smith?
+
+**Agent Smith** é um **auto-engenheiro de agentes AI** para o ecossistema Freebuff.
+
+Ele é um **agente híbrido**:
+- **`handleSteps`**: Fluxos determinísticos (setup, instalação, verificação)
+- **LLM + spawn_agents**: Decisões inteligentes, avaliação multi-agente
+
+### Filosofia: "Agent Smith do Matrix"
+
+Assim como o Agente Smith do Matrix, este agente:
+- **Avalia** agentes disponíveis e encontra padrões
+- **Clona** agentes existentes para criar novos (local + GitHub)
+- **Descobre** repositórios que o usuário não conhece
+- **Instala** e adapta qualquer repo para o formato Freebuff
+- **Usa os próprios agentes** para se auto-melhorar
+
+---
+
+## 📋 Comandos Disponíveis
 
 | Comando | Descrição |
 |---------|-----------|
-| `@agent-smith instale <skill>` | Instala uma skill específica do ECC |
-| `@agent-smith liste` | Lista skills/agents instalados |
-| `@agent-smith atualize` | Atualiza recursos do ECC |
-| `@agent-smith remova <skill>` | Remove uma skill instalada |
+| `@agent-smith reavalie` | Reavalia multi-agente de todos os agentes |
+| `@agent-smith reavalie programação` | Reavalia agentes de programação especificamente |
+| `@agent-smith liste` | Lista todos os agentes instalados |
+| `@agent-smith crie <descrição>` | Cria um novo agente (pesquisa local + GitHub) |
+| `@agent-smith clone <nome>` | Clona e adapta um agente existente |
+| `@agent-smith instale <recurso>` | Instala recursos do ECC |
+| `@agent-smith descubra` | Pesquisa GitHub por novos repositórios |
+| `@agent-smith sugira` | Sugere repositórios para instalar |
+| `@agent-smith atualize` | Atualiza recursos instalados |
+| `@agent-smith remova <nome>` | Remove recurso instalado |
+| `@agent-smith status` | Mostra saúde do sistema |
 
 ### Exemplos de Uso
 
 ```
+@agent-smith reavalie
+@agent-smith reavalie programação
+@agent-smith crie um revisor de código Rust
+@agent-smith descubra
 @agent-smith instale python-patterns
-@agent-smith instale error-handling
-@agent-smith instale api-design
-@agent-smith liste
 ```
 
 ---
 
-## O que é este projeto?
-
-O **Freebuff Agente Smit** é um agente que instala e gerencia skills, agents e rules do [ECC](https://github.com/affaan-m/ECC) (224k+ ⭐) para o [Freebuff](https://freebuff.com) e [Codebuff](https://codebuff.com).
-
-## Como Funciona
+## 🧬 Como Funciona
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│  USUÁRIO                                                        │
-│  Executa install.sh ou install.ps1                              │
-└─────────────────────────┬───────────────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  @agent-smith (Agente Instalador)                               │
-│  - Lê repositório ECC via GitHub API                           │
-│  - Instala skills/agents/rules                                  │
-│  - Gerencia atualizações                                        │
-└─────────────────────────┬───────────────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  ECC (Repositório Original)                                    │
-│  - 277+ skills                                                 │
-│  - 67+ agents                                                  │
-│  - 121+ rules                                                  │
-└─────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────┐
+│  USUÁRIO                                                            │
+│  @agent-smith [comando]                                             │
+└──────────────────────────┬──────────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  @agent-smith (Orquestrador Híbrido v2.0)                          │
+│                                                                     │
+│  ┌──────────────┐  ┌──────────────┐  ┌────────────────────┐        │
+│  │ handleSteps  │  │  LLM (mimo) │  │  spawn_agents      │        │
+│  │ (setup/inst) │  │ (decisões)  │  │  (avaliação multi)  │        │
+│  └──────────────┘  └──────────────┘  └────────────────────┘        │
+└──────────────────────────┬──────────────────────────────────────────┘
+                           │
+           ┌───────────────┼───────────────┐
+           ▼               ▼               ▼
+┌──────────────┐  ┌──────────────┐  ┌──────────────────┐
+│  Local (.agents/) │  │  GitHub API  │  │  ECC Repository  │
+│  67 agentes TS    │  │  Descoberta  │  │  277 skills      │
+│  278 skills MD    │  │  de repos    │  │  67 agents       │
+└──────────────────┘  └──────────────┘  └──────────────────┘
 ```
 
-## Estrutura de Diretórios
+---
+
+## 🗂️ Estrutura de Diretórios
 
 ```
 .seu-projeto/
 ├── .agents/
-│   ├── agent-smith.ts         ← O agente instalador
+│   ├── agent-smith.ts         ← Orquestrador híbrido (v2.0)
 │   ├── types/                 ← Tipos TypeScript
-│   └── installed/
-│       ├── ecc-skills/        ← Skills do ECC
-│       ├── ecc-agents/        ← Agents do ECC
-│       ├── ecc-rules/         ← Rules do ECC
-│       └── custom/            ← Seus resources personalizados
+│   ├── *.ts                   ← 67 agentes TypeScript
+│   └── .ecc-version           ← Versão do ECC instalado
+├── .agents/types/
+│   ├── agent-definition.ts
+│   ├── tools.ts
+│   └── util-types.ts
+├── skills/                    ← 278 skills Markdown
+├── scripts/
+│   ├── ecc-install.sh         ← Instalador ECC
+│   ├── sync-ecc.sh            ← Sincronizador
+│   └── auto-review.sh         ← Revisor automático
+├── docs/                      ← Documentação do Freebuff
 ├── .ecc-config.json           ← Configuração e registro
+├── CATALOGO.md                ← Catálogo completo
 ├── knowledge.md               ← Este arquivo
-└── .gitignore                 ← Ignora .agents/installed/
+└── .gitignore
 ```
 
-## Como Usar
+---
 
-### Instalação Rápida
+## 🚀 Instalação Rápida
 
 **Linux/Mac:**
 ```bash
@@ -90,39 +130,50 @@ curl -fsSL https://raw.githubusercontent.com/PuraForja/freebuff-agent-smith/mast
 iex (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/PuraForja/freebuff-agent-smith/master/install.ps1").Content
 ```
 
-### Gerenciamento via @agent-smith
+---
 
-```bash
-# No Freebuff/Codebuff, use:
-@agent-smith instale python-patterns
-@agent-smith instale error-handling
-@agent-smith liste
-@agent-smith atualize
-```
-
-## Recursos Disponíveis
+## 📊 Recursos Instalados
 
 | Categoria | Quantidade |
 |-----------|:----------:|
-| 🧠 Skills | 277 |
-| 🎯 Agents | 67 |
-| 📏 Rules | 121 |
-| ⚡ Commands | 92 |
-| 🔌 Hooks | 3 |
-| 📝 Contexts | 3 |
-| **Total** | **563** |
+| 🎯 Agentes TypeScript | 68 (incluindo agent-smith) |
+| 🧠 Skills Markdown | 278 |
 
-## Notas Importantes
+### 🏗️ Arquitetura dos Agentes
 
-- Este projeto instala e gerencia recursos do ECC para Freebuff/Codebuff
-- As skills são arquivos `.md` que devem ser lidos com `read_files`
-- Os agents são documentos de referência, não spawnáveis diretamente
-- Use `@agent-smith` para gerenciar instalações
-- O @agent-smith lê o ECC via GitHub API (sem baixar para sua máquina)
+**Dois modelos:**
+| Modelo | Uso |
+|--------|-----|
+| `mimo/mimo-v2.5` | Análise profunda (reviewers, architects, security) |
+| `deepseek/deepseek-v4-flash` | Tarefas rápidas (build-resolvers, refactoring) |
 
-## 📚 Documentação Disponível
+**Padrão consistente:**
+- Todos importam `AgentDefinition` de `./types/agent-definition`
+- Todos têm `includeMessageHistory: true`
+- Todos têm `spawnerPrompt` com descrição
 
-O @agent-smith tem acesso à documentação oficial do Codebuff na pasta docs/:
+---
+
+## 📖 Regras Globais do Workspace
+
+O arquivo `knowledge.md` na **raiz do workspace** contém regras OBRIGATÓRIAS que se aplicam a todos os projetos:
+
+### 🎯 Formato Padrão de Apresentação de Agentes
+Define como apresentar agentes consultados nas respostas:
+- Tabela padronizada com #, Agente, Categoria, Foco, Status
+- Formato obrigatório em TODAS as respostas com agentes
+
+### 🧠 Regra Global: Consulta Multi-Agente Obrigatória
+- **Sempre usar TODOS os agentes correlacionados** (não apenas 2-3)
+- Catálogo completo de agentes por categoria
+- Proteção anti-loop (máx 2 rodadas, máx 10 agentes)
+- Erros fatais a evitar
+
+**⚠️ Leia sempre o `knowledge.md` da raiz para garantir conformidade com as regras globais.**
+
+---
+
+## 📖 Documentação Disponível
 
 | Arquivo | Descrição |
 |---------|----------|
@@ -131,12 +182,13 @@ O @agent-smith tem acesso à documentação oficial do Codebuff na pasta docs/:
 | docs/agents-overview.md | Visão geral da arquitetura |
 | docs/quick-start.md | Guia de início rápido |
 
-### Como Criar um Novo Agente
+---
 
-Ao usar \`@agent-smith\`, ele:
-1. Lê a documentação em docs/
-2. Analisa agentes existentes em .agents/
-3. Consulta GitHub para inspiração
-4. Gera o novo agente seguindo padrões oficiais
-5. Instala e registra automaticamente
+## 🧠 Notas Importantes
+
+1. **Auto-melhoria obrigatória**: Sempre que possível, use os PRÓPRIOS AGENTES para avaliar e melhorar o sistema
+2. **Conhecimento local primeiro**: Antes de pesquisar no GitHub, leia os agentes já instalados localmente
+3. **Instalação interativa**: Sempre avise o usuário antes de instalar algo, mostre alternativas, deixe escolher
+4. **Adaptação automática**: Ao instalar de um repo GitHub, os agentes são adaptados automaticamente para o formato Freebuff
+5. **Clonagem inteligente**: Pesquisa local + GitHub, compara, e decide se clona, adapta ou cria do zero
 

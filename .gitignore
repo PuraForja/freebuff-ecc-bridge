@@ -17,5 +17,13 @@ node_modules/
 .env.local
 .agents/backup/
 
-# Freebuff Agente Smit - conteúdo instalado (runtime)
+# Freebuff Agent Smith - conteúdo instalado (runtime)
 .agents/installed/
+
+# Diretórios gerados
+openspec/
+dist/
+
+# Relatórios de teste
+coverage/
+.report.json
